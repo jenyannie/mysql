@@ -1,0 +1,17 @@
+create table users(
+    id INT NOT NULL AUTO_INCREMENT, 
+    fname VARCHAR(50) NOT NULL, 
+    lname VARCHAR(50), 
+    ph_no INT(25) NOT NULL, 
+    email_id VARCHAR(200) NOT NULL, 
+    password VARCHAR(8) NOT NULL, 
+    PRIMARY KEY (id)
+);
+
+create table complaints(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT,
+    complaints VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

@@ -1,0 +1,40 @@
+create table users(
+    id INT NOT NULL AUTO_INCREMENT, 
+    fname VARCHAR(50) NOT NULL, 
+    lname VARCHAR(50), 
+    ph_no INT(25) NOT NULL, 
+    email_id VARCHAR(200) NOT NULL, 
+    password VARCHAR(8) NOT NULL, 
+    PRIMARY KEY (id)
+);
+
+create table complaints(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT,
+    complaints VARCHAR(1000) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+create table employees(
+	id INT NOT NULL AUTO_INCREMENT,
+	complaint_id INT,
+	complaint_status VARCHAR(20),
+	PRIMARY KEY (id),
+	FOREIGN KEY (complaint_id) REFERENCES complaints(id)
+	
+);
+
+create table agents(
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	password VARCHAR(8) NOT NULL,
+	PRIMARY KEY (id),
+	complaint_id INT,
+	FOREIGN KEY (complaint_id) REFERENCES complaints(id),
+	employees_complaint_id INT,
+	employees_complaint_status VARCHAR(20),
+	FOREIGN KEY (employees_complaint_id) REFERENCES complaints(id),
+	FOREIGN KEY (employees_complaint_status) REFERENCES employees(complaint_status)
+	
+);
